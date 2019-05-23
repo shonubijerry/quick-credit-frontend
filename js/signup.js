@@ -7,21 +7,22 @@ const processResponseData = (response) => {
       break;
     }
     case 400: {
-      showMessageBox('Unsuccessful', response.error.join('<hr>'), '#');
+      showMessageBox('Unsuccessful', response.error.join('<hr>'), '');
       break;
     }
     case 409: {
-      showMessageBox('Unsuccessful', response.error, '#');
+      showMessageBox('Unsuccessful', response.error, '');
       break;
     }
     default: {
-      showMessageBox('Server Error', response.error, '#');
+      showMessageBox('Server Error', response.error, '');
       break;
     }
   }
 };
 
 const submitFormdata = (formData) => {
+  showPreloader();
   const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/auth/signup';
 
   return fetch(url, {
@@ -36,15 +37,13 @@ const submitFormdata = (formData) => {
     .then((data) => {
       processResponseData(data);
       hidePreloader();
-      console.log(data);
     })
-    .catch(error => console.error(error));
+    .catch(error => showMessageBox('Server Error', error, ''));
 };
 
 
 const getFormData = (event) => {
   event.preventDefault();
-  showPreloader();
   const firstName = document.querySelector('#firstname').value;
   const lastName = document.querySelector('#lastname').value;
   const email = document.querySelector('#email').value;
@@ -57,8 +56,12 @@ const getFormData = (event) => {
   const formData = {
     firstName, lastName, email, password, address,
   };
-  console.log(formData);
+
   submitFormdata(formData);
 };
 
+// check if user has already signed in
+if (window.localStorage.getItem('authorization')) {
+  window.location = 'dashboard.html';
+}
 document.querySelector('#signup-form').addEventListener('submit', getFormData);
