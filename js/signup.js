@@ -3,7 +3,7 @@ const processResponseData = (response) => {
   switch (response.status) {
     case 201: {
       window.localStorage.setItem('authorization', response.data.token);
-      window.location = 'loans.html';
+      window.location = 'dashboard.html';
       break;
     }
     case 400: {
@@ -38,7 +38,7 @@ const getFormData = async (event) => {
 
   const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/auth/signup';
 
-  const responseData = await submitFormdata(url, formData);
+  const responseData = await submitRegistrationOrLoginForm(url, formData);
   if (responseData) {
     hidePreloader();
     processResponseData(responseData);

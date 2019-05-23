@@ -6,15 +6,18 @@
 const processResponseData = (response) => {
   switch (response.status) {
     case 200: {
-      window.localStorage.setItem('authorization', response.data.token);
-      window.location = 'dashboard.html';
+      showMessageBox('Success', 'Loan application successful', 'loans.html');
       break;
     }
     case 400: {
       showMessageBox('Unsuccessful', response.error.join('<hr>'), '');
       break;
     }
-    case 403: {
+    case 401: {
+      showMessageBox('Unsuccessful', response.error, '');
+      break;
+    }
+    case 409: {
       showMessageBox('Unsuccessful', response.error, '');
       break;
     }
@@ -32,24 +35,25 @@ const processResponseData = (response) => {
 
 const getFormData = async (event) => {
   event.preventDefault();
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
+  const tenor = document.querySelector('#tenor').value;
+  const amount = document.querySelector('#amount').value;
 
   const formData = {
-    email, password,
+    tenor, amount,
   };
 
-  const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/auth/signin';
+  const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/loans';
 
-  const responseData = await submitRegistrationOrLoginForm(url, formData);
+  const responseData = await submitUserFormdata(url, formData);
   if (responseData) {
     hidePreloader();
     processResponseData(responseData);
   }
 };
 
-// check if user has already signed in
-if (window.localStorage.getItem('authorization')) {
-  window.location = 'dashboard.html';
+if (!window.localStorage.getItem('authorization')) {
+  window.location = 'signin.html';
 }
-document.querySelector('#signin-form').addEventListener('submit', getFormData);
+
+hideMessageBox();
+document.querySelector('#loan-form').addEventListener('submit', getFormData);
