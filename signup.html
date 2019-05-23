@@ -45,7 +45,7 @@
         <div id="message" class="overlay">
           <div class="popup">
             <h2 id="mb_title"></h2>
-            <a id="mb_link" class="close" onclick="window.history.back();" href="#">&times;</a>
+            <a id="mb_link" class="close" onclick="window.history(-1);" href="#">&times;</a>
             <div id="mb_msg" class="content">
 
             </div>
@@ -103,6 +103,7 @@
     </footer>
     </div>
     <script src="js/main.js"></script>
+    <script src="js/fetchers.js"></script>
     <script src="js/signup.js"></script>
   </body>
 
