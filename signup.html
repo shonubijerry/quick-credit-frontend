@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Sign Up | Quick Credit</title>
+    <link rel='shortcut icon' type='image/x-icon' href='./favicon.png' />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/preloader.css" />
+
+  </head>
+
+  <body class="form-body">
+    <div id='preloader'></div>
+    <div id="container">
+      <div id="header">
+        <header class="main-header">
+          <div class="nav">
+            <input type="checkbox" id="nav-check">
+            <div class="nav-header">
+              <a href="index.html"><img src="./assets/images/logo.png" /></a>
+            </div>
+            <div class="nav-btn">
+              <label for="nav-check">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </label>
+            </div>
+
+            <div class="nav-links">
+              <a href="index.html">HOME</a>
+              <a href="signin.html">SIGN IN</a>
+              <a class="active" href="signup.html">SIGN UP</a>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div id="content-wrap">
+        <a class="message-trigger" href="#message">Popup Message</a>
+        <div id="message" class="overlay">
+          <div class="popup">
+            <h2 id="mb_title"></h2>
+            <a id="mb_link" class="close" onclick="window.history.back();" href="#">&times;</a>
+            <div id="mb_msg" class="content">
+
+            </div>
+          </div>
+        </div>
+        <section>
+          <div class="content-div">
+            <div class="centered">
+              <form id="signup-form" action="#">
+                <div class="signup-content signup-width">
+                  <h1 class="margin-left">Sign Up</h1>
+                  <p>Create an account now.</p>
+                  <hr>
+                  <div class="left-div left-text">
+                    <label for="firstname"><b>First name <span class="required">*</span></b></label>
+                    <input type="text" name="firstname" minlength="3" id="firstname" placeholder="Enter First name" required>
+
+                    <label for="lastname"><b>Last name <span class="required">*</span></b></label>
+                    <input type="text" name="lastname" minlength="3" id="lastname" placeholder="Enter Last name" required>
+
+                    <label for="email"><b>Email <span class="required">*</span></b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                    <label for="psw"><b>Password <span class="required">*</span></b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                  </div>
+                  <div class="right-div right-text">
+                    <label for="address"><b>Address <span class="required">*</span></b></label>
+                    <input type="text" name="address" id="address" placeholder="Enter Address" required>
+
+                    <label for="city"><b>City <span class="required">*</span></b></label>
+                    <input type="text" name="city" id="city" placeholder="Enter city" required>
+
+                    <label for="state"><b>State <span class="required">*</span></b></label>
+                    <input type="text" name="state" id="state" placeholder="Enter state" required>
+                  </div>
+                  <hr>
+                  <div class="signup-footer">
+                    <button type="submit" class="btn-primary btn-primary-big">Sign Up</button>
+                    <p>Already have an account? <a href="signin.html">Sign in</a></p>
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    </div>
+    <footer id="footer" class="text-white">
+      <p>Developed by Shonubi Oluwakorede - for Andela 44</p>
+      <p>Copyright © 2019</p>
+    </footer>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/signup.js"></script>
+  </body>
+
+</html>
