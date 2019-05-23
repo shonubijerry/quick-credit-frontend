@@ -380,6 +380,10 @@ h1 {
   display: none;
 }
 
+.message-trigger {
+  display: none;
+}
+
 .overlay {
   position: fixed;
   top: 0;

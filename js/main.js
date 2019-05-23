@@ -1,6 +1,6 @@
 
 const showMessageBox = (title = '', msg, link) => {
-  const messageBoxTrigger = document.querySelector('.popup1-trigger');
+  const messageBoxTrigger = document.querySelector('.message-trigger');
   document.querySelector('#mb_title').innerHTML = title;
   document.querySelector('#mb_msg').innerHTML = msg;
   document.querySelector('#mb_link').href = link;
@@ -19,3 +19,13 @@ const filterLoan = (option) => {
   // When using real data, This will be handled by
   window.location.href = `${option.value}.html`;
 };
+
+const showPreloader = () => {
+  const loader = document.querySelector('#preloader');
+  loader.style.display = 'block';
+}
+
+const hidePreloader = () => {
+  const loader = document.querySelector('#preloader');
+  loader.style.display = 'none';
+}
