@@ -65,7 +65,7 @@ const processLoanResponseData = (response) => {
  */
 
 const getLoansData = async (event) => {
-  const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/loans';
+  const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans';
 
   const responseData = await getUserdata(url);
   if (responseData) {

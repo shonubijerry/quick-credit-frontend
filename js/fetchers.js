@@ -11,7 +11,6 @@ const submitRegistrationOrLoginForm = (url, formData) => {
   showPreloader();
 
   return fetch(url, {
-    credentials: 'same-origin',
     method: 'POST',
     headers: new Headers({
       'Content-Type': 'application/json',
@@ -27,7 +26,6 @@ const submitUserFormdata = (url, formData) => {
   showPreloader();
 
   return fetch(url, {
-    credentials: 'same-origin',
     method: 'POST',
     headers: new Headers({
       'Content-Type': 'application/json',
@@ -44,7 +42,6 @@ const getUserdata = (url) => {
   showPreloader();
 
   return fetch(url, {
-    credentials: 'same-origin',
     method: 'GET',
     headers: new Headers({
       'Content-Type': 'application/json',

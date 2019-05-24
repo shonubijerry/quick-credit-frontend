@@ -42,7 +42,7 @@ const getFormData = async (event) => {
     tenor, amount,
   };
 
-  const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/loans';
+  const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans';
 
   const responseData = await submitUserFormdata(url, formData);
   if (responseData) {
