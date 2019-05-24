@@ -57,3 +57,4 @@ if (!window.localStorage.getItem('authorization')) {
 
 hideMessageBox();
 document.querySelector('#loan-form').addEventListener('submit', getFormData);
+document.querySelector('#logout').addEventListener('click', doLogout);

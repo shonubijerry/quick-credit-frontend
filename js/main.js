@@ -46,5 +46,5 @@ const hidePreloader = () => {
 
 const doLogout = () => {
   localStorage.removeItem('authorization');
+  window.location = 'signin.html';
 };
-document.querySelector('#logout').addEventListener('submit', doLogout);

@@ -39,3 +39,19 @@ const submitUserFormdata = (url, formData) => {
     .then(data => data)
     .catch(error => showMessageBox('Server Error', error, ''));
 };
+
+const getUserdata = (url) => {
+  showPreloader();
+
+  return fetch(url, {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      authorization: window.localStorage.getItem('authorization'),
+    }),
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => showMessageBox('Server Error', error, ''));
+};
