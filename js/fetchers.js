@@ -11,8 +11,7 @@ const submitRegistrationOrLoginForm = (url, formData) => {
   showPreloader();
 
   return fetch(url, {
-mode: 'cors', 
-    credentials: 'same-origin',
+    mode: 'cors', 
     method: 'POST',
     headers: new Headers({
 'Access-Control-Allow-Origin' : '*', 
@@ -29,8 +28,7 @@ const submitUserFormdata = (url, formData) => {
   showPreloader();
 
   return fetch(url, {
-mode: 'cors', 
-    credentials: 'same-origin',
+    mode: 'cors',
     method: 'POST',
     headers: new Headers({
 'Access-Control-Allow-Origin' : '*',
@@ -48,7 +46,6 @@ const getUserdata = (url) => {
   showPreloader();
 
   return fetch(url, {
-    credentials: 'same-origin',
     method: 'GET',
     headers: new Headers({
       'Content-Type': 'application/json',

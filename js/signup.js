@@ -36,7 +36,7 @@ const getFormData = async (event) => {
     firstName, lastName, email, password, address,
   };
 
-  const url = 'http://quick-credit-shonubi.herokuapp.com/api/v1/auth/signup';
+  const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/auth/signup';
 
   const responseData = await submitRegistrationOrLoginForm(url, formData);
   if (responseData) {
