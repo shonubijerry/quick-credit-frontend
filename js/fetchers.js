@@ -11,8 +11,10 @@ const submitRegistrationOrLoginForm = (url, formData) => {
   showPreloader();
 
   return fetch(url, {
+    mode: 'cors', 
     method: 'POST',
     headers: new Headers({
+'Access-Control-Allow-Origin' : '*', 
       'Content-Type': 'application/json',
     }),
     body: JSON.stringify(formData),
@@ -26,8 +28,10 @@ const submitUserFormdata = (url, formData) => {
   showPreloader();
 
   return fetch(url, {
+    mode: 'cors',
     method: 'POST',
     headers: new Headers({
+'Access-Control-Allow-Origin' : '*',
       'Content-Type': 'application/json',
       authorization: window.localStorage.getItem('authorization'),
     }),
