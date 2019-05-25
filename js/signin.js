@@ -1,55 +1,63 @@
+/* eslint-disable import/extensions */
+
+import Main from './main.js';
+import Fetcher from './fetchers.js';
+
+/**
+ * This class handles sign up process by calling other necessary methods
+ */
+class Signin {
 /**
  * Process response data received from server
  * @param {object} response
  */
 
-const processResponseData = (response) => {
-  switch (response.status) {
-    case 200: {
-      window.localStorage.setItem('authorization', response.data.token);
-      window.location = 'dashboard.html';
-      break;
-    }
-    case 400: {
-      showMessageBox('Unsuccessful', response.error.join('<hr>'), '');
-      break;
-    }
-    case 403: {
-      showMessageBox('Unsuccessful', response.error, '');
-      break;
-    }
-    default: {
-      showMessageBox('Server Error', response.error, '');
-      break;
+  static processResponseData(response) {
+    switch (response.status) {
+      case 200: {
+        window.localStorage.setItem('authorization', response.data.token);
+        window.location = 'dashboard.html';
+        break;
+      }
+      case 400: {
+        Main.showMessageBox('Unsuccessful', response.error.join('<hr>'), '');
+        break;
+      }
+      case 403: {
+        Main.showMessageBox('Unsuccessful', response.error, '');
+        break;
+      }
+      default: {
+        Main.showMessageBox('Server Error', response.error, '');
+        break;
+      }
     }
   }
-};
 
-/**
+  /**
  * Get input values from form, prepare it as JSON object and send to server
  * @param {object} event
  */
 
-const getFormData = async (event) => {
-  event.preventDefault();
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
+  static async getFormData(event) {
+    event.preventDefault();
+    const formData = Main.getFormData('email', 'password');
 
-  const formData = {
-    email, password,
-  };
+    const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/auth/signin';
 
-  const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/auth/signin';
-
-  const responseData = await submitRegistrationOrLoginForm(url, formData);
-  if (responseData) {
-    hidePreloader();
-    processResponseData(responseData);
+    const responseData = await Fetcher.submitRegistrationOrLoginForm(url, formData);
+    if (responseData) {
+      Signin.processResponseData(responseData);
+      Main.hidePreloader();
+    }
   }
-};
+}
+
+export default Signin;
 
 // check if user has already signed in
 if (window.localStorage.getItem('authorization')) {
   window.location = 'dashboard.html';
 }
-document.querySelector('#signin-form').addEventListener('submit', getFormData);
+Main.hideMessageBox();
+document.querySelector('#signin-form').addEventListener('submit', Signin.getFormData);
