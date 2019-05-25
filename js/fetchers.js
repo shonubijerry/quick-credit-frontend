@@ -57,7 +57,6 @@ class Fetcher {
  */
   static getFromAPI(url, method) {
     Main.showPreloader();
-
     return fetch(url, {
       method,
       headers: new Headers({
