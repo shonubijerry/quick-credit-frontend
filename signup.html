@@ -45,7 +45,7 @@
         <div id="message" class="overlay">
           <div class="popup">
             <h2 id="mb_title"></h2>
-            <a id="mb_link" class="close" onclick="window.history(-1);" href="#">&times;</a>
+            <a id="mb_link" class="close" href="#">&times;</a>
             <div id="mb_msg" class="content">
 
             </div>
@@ -61,10 +61,10 @@
                   <hr>
                   <div class="left-div left-text">
                     <label for="firstname"><b>First name <span class="required">*</span></b></label>
-                    <input type="text" name="firstname" minlength="3" id="firstname" placeholder="Enter First name" required>
+                    <input type="text" name="firstname" minlength="3" id="firstName" placeholder="Enter First name" required>
 
                     <label for="lastname"><b>Last name <span class="required">*</span></b></label>
-                    <input type="text" name="lastname" minlength="3" id="lastname" placeholder="Enter Last name" required>
+                    <input type="text" name="lastname" minlength="3" id="lastName" placeholder="Enter Last name" required>
 
                     <label for="email"><b>Email <span class="required">*</span></b></label>
                     <input type="text" placeholder="Enter Email" name="email" id="email" required>
@@ -102,9 +102,7 @@
       <p>Copyright © 2019</p>
     </footer>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/fetchers.js"></script>
-    <script src="js/signup.js"></script>
+    <script type="module" src="js/signup.js"></script>
   </body>
 
 </html>

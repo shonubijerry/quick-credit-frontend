@@ -37,7 +37,7 @@
               <a href="apply_loan.html">APPLY</a>
               <a class="active" href="loans.html">LOANS</a>
               <a href="profile.html">PROFILE</a>
-              <a href="signin.html">LOG OUT</a>
+              <a id="logout">LOG OUT</a>
             </div>
           </div>
         </header>
@@ -47,7 +47,7 @@
         <div id="message" class="overlay">
           <div class="popup">
             <h2 id="mb_title"></h2>
-            <a id="mb_link" class="close" onclick="window.history(-1);" href="#">&times;</a>
+            <a id="mb_link" class="close" href="#">&times;</a>
             <div id="mb_msg" class="content">
 
             </div>
@@ -59,11 +59,11 @@
             <p>All loans have interest rate of 5%</p>
 
             <table id="table">
-              
+
             </table>
           </div>
           <br/>
-          <div class="pagination-center">
+          <div id="pagination" class="pagination-center">
             <div class="pagination">
               <a href="#">&laquo;</a>
               <a class="active" href="#">1</a>
@@ -82,9 +82,7 @@
         <p>Copyright © 2019</p>
       </footer>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/fetchers.js"></script>
-    <script src="js/loans.js"></script>
+    <script type="module" src="js/loans.js"></script>
   </body>
 
 
