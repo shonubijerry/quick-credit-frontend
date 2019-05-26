@@ -4,7 +4,7 @@ import Fetcher from './fetchers.js';
 import Components from './components.js';
 
 /**
- * Process response data received from server
+ * Display response data received from server
  * @param {object} response
  */
 class Loans {
@@ -32,7 +32,7 @@ class Loans {
         break;
       }
       case 401: {
-        Loans.displayLoans(response.data);
+        Main.showMessageBox('Not Authorized', response.error, '');
         break;
       }
       default: {
@@ -43,9 +43,8 @@ class Loans {
   }
 
   /**
- * Get input values from form, prepare it as JSON object and send to server
+ * Fetch response from API
  */
-
   static async getLoansData() {
     const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans';
 
