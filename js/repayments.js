@@ -11,33 +11,32 @@ class Repayments {
   static displayRepayments(repaymentData) {
     const contentHead = document.querySelector('#details-head');
     const contentBody = document.querySelector('#details-body');
+    console.log(repaymentData);
 
-    if (repaymentData.length === 0) {
-      contentHead.innerHTML = 'No Repayments';
-      contentBody.innerHTML = 'Repayments has not been made for this loan';
+    let repaymentBody = '';
+    contentHead.innerHTML = `<p><span class="entry-title">Full Name:</span><span class="entry-value">${repaymentData.firstname} ${repaymentData.lastname}</span></span></p>
+              <p><span class="entry-title">Address:</span><span class="entry-value">${repaymentData.address}</span></p>
+              <p><span class="entry-title">Email:</span><span class="entry-value">${repaymentData.loanuser}</span></p>
+              <p><span class="entry-title">Date Collected:</span><span class="entry-value">${repaymentData.loandate}</span></p>
+              <p><span class="entry-title">Loan Amount:</span><span class="entry-value">${repaymentData.amount}</span></p>
+              <p><span class="entry-title">Tenor:</span><span class="entry-value">${repaymentData.tenor}</span></p>
+              <p><span class="entry-title">Balance:</span><span class="entry-value">${repaymentData.balance}</span></p>
+              <p><span class="entry-title">Monthly Installment:</span><span class="entry-value">${repaymentData.monthlyinstallment}</span></p>`;
+    if (repaymentData.repayments.length === 0) {
+      contentBody.innerHTML = 'Repayments have not been made for this loan';
     } else {
-      const repaymentItem = document.createElement('div');
-      console.log(repaymentData);
-      repaymentData.forEach((repayment) => {
-        contentHead.innerHTML = `<p><span class="entry-title">Full Name:</span><span class="entry-value">${repayment.firstname} ${repaymentData.lastname}</span></span></p>
-              <p><span class="entry-title">Address:</span><span class="entry-value">${repayment.address}</span></p>
-              <p><span class="entry-title">Email:</span><span class="entry-value">${repayment.loanuser}</span></p>
-              <p><span class="entry-title">Date Collected:</span><span class="entry-value">${repayment.createdon}</span></p>
-              <p><span class="entry-title">Amount Paid:</span><span class="entry-value">${repayment.amount}</span></p>
-              <p><span class="entry-title">Balance:</span><span class="entry-value">${repayment.balance}</span></p>
-              <p><span class="entry-title">Monthly Installment:</span><span class="entry-value">${repayment.monthlyinstallment}</span></p>`;
-        repaymentItem.innerHTML = `
+      repaymentData.repayments.forEach((repayment) => {
+        repaymentBody = `${repaymentBody}
       <p><span class="entry-title">Date:</span><span class="entry-value">${repayment.createdon}</span></p>
-              <p><span class="entry-title">Amount:</span><span class="entry-value">${repayment.paidamount}</span></p>
+              <p><span class="entry-title">Amount:</span><span class="entry-value">${repayment.amount}</span></p>
               <hr>
       `;
       });
-      contentBody.appendChild(repaymentItem);
+      contentBody.innerHTML = repaymentBody;
     }
   }
 
-
-/**
+  /**
  * Process response data received from server
  * @param {object} response
  */
