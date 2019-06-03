@@ -37,7 +37,7 @@
               <a href="apply_loan.html">APPLY</a>
               <a class="active" href="loans.html">LOANS</a>
               <a href="profile.html">PROFILE</a>
-              <a href="signin.html">LOG OUT</a>
+              <a id="logout">LOG OUT</a>
             </div>
           </div>
         </header>
@@ -47,7 +47,7 @@
         <div id="message" class="overlay">
           <div class="popup">
             <h2 id="mb_title"></h2>
-            <a id="mb_link" class="close" onclick="window.history(-1);" href="#">&times;</a>
+            <a id="mb_link" class="close" onclick="window.history(-1);" href="">&times;</a>
             <div id="mb_msg" class="content">
 
             </div>
@@ -60,20 +60,26 @@
               <h2>Loan Repayment History</h2>
             </div>
             <div id="details-head" class="card-content first">
-              
+              <p><span class="entry-title">Full Name:</span><span class="entry-value"></span></span>
+              </p>
+              <p><span class="entry-title">Address:</span><span class="entry-value"></span></p>
+              <p><span class="entry-title">Email:</span><span class="entry-value"></span></p>
+              <p><span class="entry-title">Date Collected:</span><span class="entry-value"></span></p>
+              <p><span class="entry-title">Loan Amount:</span><span class="entry-value"></span></p>
+              <p><span class="entry-title">Tenor:</span><span class="entry-value"></span></p>
+              <p><span class="entry-title">Balance:</span><span class="entry-value"></span></p>
+              <p><span class="entry-title">Monthly Installment:</span><span class="entry-value"></span></p>
             </div>
             <div id="details-body" class="card-content">
-              
             </div>
-          </div>
         </section>
+        </div>
       </div>
-    </div>
-    <footer id="footer" class="text-white">
-      <p>Developed by Shonubi Oluwakorede - for Andela 44</p>
-      <p>Copyright © 2019</p>
-    </footer>
-    <script type="module" src="js/repayments.js"></script>
+      <footer id="footer" class="text-white">
+        <p>Developed by Shonubi Oluwakorede - for Andela 44</p>
+        <p>Copyright © 2019</p>
+      </footer>
+      <script type="module" src="js/repayments.js"></script>
   </body>
 
 </html>

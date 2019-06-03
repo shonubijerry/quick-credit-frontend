@@ -27,31 +27,55 @@ class Loans {
 
   static processLoanResponseData(response) {
     switch (response.status) {
+      case 419: {
+        Main.showMessageBox('Session Timeout', response.error, 'signin.html');
+        localStorage.removeItem('authorization');
+        break;
+      }
+      case 401: {
+        Main.showMessageBox('Not Authorized', response.error, 'signin.html');
+        break;
+      }
       case 200: {
         Loans.displayLoans(response.data);
         break;
       }
-      case 401: {
-        Main.showMessageBox('Not Authorized', response.error, '');
-        break;
-      }
       default: {
-        Main.showMessageBox('Server Error', response.error, '');
+        Main.showMessageBox('Server Error', response.error, '#');
         break;
       }
     }
   }
 
   /**
- * Fetch response from API
- */
-  static async getLoansData() {
-    const url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans';
+  * Fetch loans from API
+  * @param {string} filter API endpoint to use based on type of loan requested
+  */
+  static async getLoansData(filter) {
+    let url = '';
+    switch (filter) {
+      case 'current': {
+        url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans?status=approved&repaid=false';
+        break;
+      }
+      case 'repaid': {
+        url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans?status=approved&repaid=true';
+        break;
+      }
+      default: {
+        url = 'https://quick-credit-shonubi.herokuapp.com/api/v1/loans';
+      }
+    }
 
     const responseData = await Fetcher.getFromAPI(url, 'GET');
     if (responseData) {
       Loans.processLoanResponseData(responseData);
       Main.hidePreloader();
+    } else {
+      Main.showMessageBox('Network Error', 'Internet disconnected', '#');
+      Main.hidePreloader();
+      const pagination = document.querySelector('#pagination');
+      pagination.style.display = 'none';
     }
   }
 }
@@ -65,4 +89,4 @@ if (!window.localStorage.getItem('authorization')) {
 document.querySelector('#logout').addEventListener('click', Main.doLogout);
 Main.hideMessageBox();
 Main.showPreloader();
-Loans.getLoansData();
+Loans.getLoansData('all');
