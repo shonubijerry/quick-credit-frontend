@@ -35,6 +35,18 @@ class Components {
     });
     loansTable.appendChild(tableBody);
   }
+
+  static prepareRepaymentHead(repaymentData) {
+    const contentHead = document.querySelector('#details-head');
+    contentHead.innerHTML = `<p><span class="entry-title">Full Name:</span><span class="entry-value">${repaymentData.firstname} ${repaymentData.lastname}</span></span></p>
+              <p><span class="entry-title">Address:</span><span class="entry-value">${repaymentData.address}</span></p>
+              <p><span class="entry-title">Email:</span><span class="entry-value">${repaymentData.loanuser}</span></p>
+              <p><span class="entry-title">Date Collected:</span><span class="entry-value">${repaymentData.loandate}</span></p>
+              <p><span class="entry-title">Loan Amount:</span><span class="entry-value">${repaymentData.amount}</span></p>
+              <p><span class="entry-title">Tenor:</span><span class="entry-value">${repaymentData.tenor}</span></p>
+              <p><span class="entry-title">Balance:</span><span class="entry-value">${repaymentData.balance}</span></p>
+              <p><span class="entry-title">Monthly Installment:</span><span class="entry-value">${repaymentData.monthlyinstallment}</span></p>`;
+  }
 }
 
 export default Components;

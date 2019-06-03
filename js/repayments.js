@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import Main from './main.js';
 import Fetcher from './fetchers.js';
+import Components from './components.js';
 
 class Repayments {
 /**
@@ -9,30 +10,21 @@ class Repayments {
  */
 
   static displayRepayments(repaymentData) {
-    const contentHead = document.querySelector('#details-head');
     const contentBody = document.querySelector('#details-body');
-    console.log(repaymentData);
 
     let repaymentBody = '';
-    contentHead.innerHTML = `<p><span class="entry-title">Full Name:</span><span class="entry-value">${repaymentData.firstname} ${repaymentData.lastname}</span></span></p>
-              <p><span class="entry-title">Address:</span><span class="entry-value">${repaymentData.address}</span></p>
-              <p><span class="entry-title">Email:</span><span class="entry-value">${repaymentData.loanuser}</span></p>
-              <p><span class="entry-title">Date Collected:</span><span class="entry-value">${repaymentData.loandate}</span></p>
-              <p><span class="entry-title">Loan Amount:</span><span class="entry-value">${repaymentData.amount}</span></p>
-              <p><span class="entry-title">Tenor:</span><span class="entry-value">${repaymentData.tenor}</span></p>
-              <p><span class="entry-title">Balance:</span><span class="entry-value">${repaymentData.balance}</span></p>
-              <p><span class="entry-title">Monthly Installment:</span><span class="entry-value">${repaymentData.monthlyinstallment}</span></p>`;
-    if (repaymentData.repayments.length === 0) {
-      contentBody.innerHTML = 'Repayments have not been made for this loan';
-    } else {
+    Components.prepareRepaymentHead(repaymentData);
+    if (repaymentData.repayments.length > 0) {
       repaymentData.repayments.forEach((repayment) => {
         repaymentBody = `${repaymentBody}
       <p><span class="entry-title">Date:</span><span class="entry-value">${repayment.createdon}</span></p>
-              <p><span class="entry-title">Amount:</span><span class="entry-value">${repayment.amount}</span></p>
+              <p><span class="entry-title">Amount Paid:</span><span class="entry-value">${repayment.amount}</span></p>
               <hr>
       `;
       });
       contentBody.innerHTML = repaymentBody;
+    } else {
+      contentBody.innerHTML = 'Repayments have not been made for this loan';
     }
   }
 
@@ -43,16 +35,21 @@ class Repayments {
 
   static processRepaymentResponseData(response) {
     switch (response.status) {
-      case 200: {
-        Repayments.displayRepayments(response.data);
+      case 419: {
+        Main.showMessageBox('Session Timeout', response.error, 'signin.html');
+        localStorage.removeItem('authorization');
+        break;
+      }
+      case 401: {
+        Main.showMessageBox('Not Authorized', response.error, 'signin.html');
         break;
       }
       case 404: {
         Repayments.displayRepayments(response.data);
         break;
       }
-      case 401: {
-        Main.showMessageBox('Unsuccessful', response.error, '');
+      case 200: {
+        Repayments.displayRepayments(response.data);
         break;
       }
       default: {
@@ -74,6 +71,9 @@ class Repayments {
     if (responseData) {
       Main.hidePreloader();
       Repayments.processRepaymentResponseData(responseData);
+    } else {
+      Main.showMessageBox('Network Error', 'Internet disconnected', '#');
+      Main.hidePreloader();
     }
   }
 }
