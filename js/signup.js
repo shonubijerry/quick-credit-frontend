@@ -52,6 +52,9 @@ class Signup {
     if (responseData) {
       Signup.processResponseData(responseData);
       Main.hidePreloader();
+    } else {
+      Main.showMessageBox('Network Error', 'Internet disconnected', '#');
+      Main.hidePreloader();
     }
   }
 }

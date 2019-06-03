@@ -17,12 +17,17 @@ class ApplyLoan {
         Main.showMessageBox('Unsuccessful', response.error.join('<hr>'), '#');
         break;
       }
+      case 419: {
+        Main.showMessageBox('Session Timeout', response.error, 'signin.html');
+        localStorage.removeItem('authorization');
+        break;
+      }
       case 401: {
-        Main.showMessageBox('Unsuccessful', response.error, '#');
+        Main.showMessageBox('Not Authorized', response.error, 'signin.html');
         break;
       }
       case 409: {
-        Main.showMessageBox('Unsuccessful', response.error, '#');
+        Main.showMessageBox('Unsuccessful', response.error, 'loans.html');
         break;
       }
       default: {
@@ -47,6 +52,9 @@ class ApplyLoan {
     const responseData = await Fetcher.sendToAPI(url, 'POST', formData);
     if (responseData) {
       ApplyLoan.processResponseData(responseData);
+      Main.hidePreloader();
+    } else {
+      Main.showMessageBox('Network Error', 'Internet disconnected', '#');
       Main.hidePreloader();
     }
   }

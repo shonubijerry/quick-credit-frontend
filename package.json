@@ -8,6 +8,8 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/register": "^7.4.4",
     "eslint": "^5.16.0"
   },
   "devDependencies": {
@@ -17,7 +19,7 @@
   },
   "scripts": {
     "test": "node ./index.js",
-    "build": "babel ./js/* --out-dir ./js/dist --copy-files"
+    "build": "./node_modules/.bin/babel ./js/* --out-dir ./js/dist --copy-files"
   },
   "repository": {
     "type": "git",

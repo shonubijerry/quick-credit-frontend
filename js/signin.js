@@ -20,15 +20,15 @@ class Signin {
         break;
       }
       case 400: {
-        Main.showMessageBox('Unsuccessful', response.error.join('<hr>'), '');
+        Main.showMessageBox('Unsuccessful', response.error.join('<hr>'), '#');
         break;
       }
       case 403: {
-        Main.showMessageBox('Unsuccessful', response.error, '');
+        Main.showMessageBox('Unsuccessful', response.error, '#');
         break;
       }
       default: {
-        Main.showMessageBox('Server Error', response.error, '');
+        Main.showMessageBox('Server Error', response.error, '#');
         break;
       }
     }
@@ -48,6 +48,9 @@ class Signin {
     const responseData = await Fetcher.submitRegistrationOrLoginForm(url, formData);
     if (responseData) {
       Signin.processResponseData(responseData);
+      Main.hidePreloader();
+    } else {
+      Main.showMessageBox('Network Error', 'Internet disconnected', '#');
       Main.hidePreloader();
     }
   }
