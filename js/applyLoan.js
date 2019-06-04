@@ -62,10 +62,5 @@ class ApplyLoan {
 
 export default ApplyLoan;
 
-if (!window.localStorage.getItem('authorization')) {
-  window.location = 'signin.html';
-}
-
-Main.hideMessageBox();
 document.querySelector('#loan-form').addEventListener('submit', ApplyLoan.getFormData);
 document.querySelector('#logout').addEventListener('click', Main.doLogout);
