@@ -15,7 +15,10 @@ class Signin {
   static processResponseData(response) {
     switch (response.status) {
       case 200: {
-        window.localStorage.setItem('authorization', response.data.token);
+        if (response.data.isadmin) {
+          window.localStorage.setItem('authorization', response.data.token);
+          window.location = './admin/dashboard.html';
+        }
         window.location = 'dashboard.html';
         break;
       }
@@ -58,9 +61,5 @@ class Signin {
 
 export default Signin;
 
-// check if user has already signed in
-if (window.localStorage.getItem('authorization')) {
-  window.location = 'dashboard.html';
-}
 Main.hideMessageBox();
 document.querySelector('#signin-form').addEventListener('submit', Signin.getFormData);
